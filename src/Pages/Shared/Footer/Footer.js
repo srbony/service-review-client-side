@@ -3,7 +3,7 @@ import logo from '../../../assets/logo.png';
 
 const Footer = () => {
     return (
-        <footer className="footer p-10 bg-base-200 text-base-content">
+        <footer className="footer p-32 bg-black text-white">
             <div>
                 <img className='w-20 h-20' src={logo} alt="" />
                 <p>Best Food Ltd.<br />Providing reliable tech since 2022</p>
