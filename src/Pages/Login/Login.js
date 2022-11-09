@@ -1,3 +1,4 @@
+import { GoogleAuthProvider } from 'firebase/auth';
 import React from 'react';
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
@@ -5,7 +6,9 @@ import { AuthContext } from '../../Contexts/AuthProvider/AuthProvider';
 
 const Login = () => {
 
-    const { login } = useContext(AuthContext);
+    const { login, logInWithGoogle } = useContext(AuthContext);
+
+    const googleProvider = new GoogleAuthProvider()
     const handleLogin = event => {
         event.preventDefault();
         const form = event.target;
@@ -19,7 +22,14 @@ const Login = () => {
             .catch(error => console.error(error))
     }
 
-
+    const handleGoogleSignIn = () => {
+        logInWithGoogle(googleProvider)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+            })
+            .catch(error => console.error(error))
+    }
 
 
     return (
@@ -48,6 +58,10 @@ const Login = () => {
                         </div>
                         <div className="form-control mt-6">
                             <input type="submit" className="btn btn-primary" value="Login" />
+
+                        </div>
+                        <div className="form-control mt-6">
+                            <input type="submit" onClick={handleGoogleSignIn} className="btn btn-primary" value="Login with Google" />
 
                         </div>
                     </form>
