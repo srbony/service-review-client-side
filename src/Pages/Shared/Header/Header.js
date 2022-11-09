@@ -7,6 +7,7 @@ const Header = () => {
     const menuItems = <>
         <li className='font-semibold font-2xl'> <Link to='/home'>Home</Link> </li>
         <li className='font-semibold font-2xl'> <Link to='/blog'>Blog</Link> </li>
+        <li></li>
 
 
     </>
@@ -39,7 +40,9 @@ const Header = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                <a className="btn">Get started</a>
+                <Link to='/login'><button className='btn'>Login</button></Link>
+
+                {/* <a className="btn">Get started</a> */}
             </div>
         </div>
     );
