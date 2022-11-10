@@ -8,7 +8,7 @@ const ReviewRow = ({ reviewsdata, handleDelete, handleUpdate }) => {
 
 
     useEffect(() => {
-        fetch(`http://localhost:5000/reviews/${review}`)
+        fetch(`https://service-review-server-side-orcin.vercel.app/reviews/${review}`)
             .then(res => res.json())
             .then(data => setServiceReview(data))
     }, [review]);

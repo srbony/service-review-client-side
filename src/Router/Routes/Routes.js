@@ -44,19 +44,20 @@ const router = createBrowserRouter([
             {
                 path: '/details/:id',
                 element: <Details></Details>,
-                loader: ({ params }) => fetch(`http://localhost:5000/services/${params.id}`)
+                loader: ({ params }) => fetch(`https://service-review-server-side-orcin.vercel.app/services/${params.id}`)
             },
             {
                 path: '/myreviews',
 
-                // loader: () => fetch('http://localhost:5000/services'),
+                // loader: () => fetch('https://service-review-server-side-orcin.vercel.app/services'),
                 element: <PrivateRoute><MyReviews></MyReviews></PrivateRoute>
             },
             {
                 path: '/addservices',
-                element: <AddServices></AddServices>
-            }
+                element: <PrivateRoute><AddServices></AddServices></PrivateRoute>
+            },
         ]
+
     }
 ]);
 export default router;

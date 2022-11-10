@@ -8,7 +8,7 @@ import image from '../../../assets/banner/FoodServices.jpg';
 const AllServices = () => {
     const [allService, setAllService] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:5000/services')
+        fetch('https://service-review-server-side-orcin.vercel.app/services')
             .then(res => res.json())
             .then(data => setAllService(data))
     }, [])
@@ -31,12 +31,7 @@ const AllServices = () => {
                     }
 
 
-                    {/* {
-                        allService.map(service => <ServiceCard
-                            key={service.id}
-                            service={service}
-                        ></ServiceCard>)
-                    } */}
+
                 </div>
 
 

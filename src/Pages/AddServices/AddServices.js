@@ -17,7 +17,7 @@ const AddServices = () => {
             message
         }
 
-        fetch('http://localhost:5000/addServices', {
+        fetch('https://service-review-server-side-orcin.vercel.app/addServices', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -26,9 +26,9 @@ const AddServices = () => {
         })
             .then(res => res.json())
             .then(data => {
-                
+
                 console.log(data)
-                if(data.acknowledged){
+                if (data.acknowledged) {
                     alert('service added successfully')
                 }
                 form.reset()

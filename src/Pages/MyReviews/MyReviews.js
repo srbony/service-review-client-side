@@ -11,9 +11,9 @@ const MyReviews = () => {
     useTittle('MyReviews')
     const { user } = useContext(AuthContext);
     const [reviews, setReviews] = useState([])
-    // const url = `http://localhost:5000/reviews?email=${user.email}`
+    // const url = `https://service-review-server-side-orcin.vercel.app/reviews?email=${user.email}`
     useEffect(() => {
-        fetch(`http://localhost:5000/reviews?email=${user?.email}`)
+        fetch(`https://service-review-server-side-orcin.vercel.app/reviews?email=${user?.email}`)
             .then(res => res.json())
             .then(data => setReviews(data))
     }, [user?.email]);
@@ -22,7 +22,7 @@ const MyReviews = () => {
     const handleDelete = id => {
         const procced = window.confirm('Are you sure want to delete');
         if (procced) {
-            fetch(`http://localhost:5000/reviews/${id}`, {
+            fetch(`https://service-review-server-side-orcin.vercel.app/reviews/${id}`, {
                 method: 'DELETE'
             })
                 .then(res => res.json())
@@ -38,7 +38,7 @@ const MyReviews = () => {
 
     }
     const handleUpdate = id => {
-        fetch(`http://localhost:5000/reviews/${id}`, {
+        fetch(`https://service-review-server-side-orcin.vercel.app/reviews/${id}`, {
             method: 'PATCH',
             headers: {
                 'content-type': 'application/json'
