@@ -5,6 +5,45 @@ import { AuthContext } from '../../Contexts/AuthProvider/AuthProvider';
 const Details = () => {
     const { _id, review, name, img, price, description } = useLoaderData();
     const { user } = useContext(AuthContext);
+
+    const handelReview = event => {
+        event.preventDefault();
+        const form = event.target;
+        const email = user?.email || 'unauthorized';
+        const name = form.name.value;
+        const message = form.message.value;
+        console.log(email, name, message);
+
+        const reviewdata = {
+            serviceId: _id,
+            review,
+            serviceName: review.name,
+            email,
+            message
+
+        }
+
+        fetch('http://localhost:5000/reviews', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(reviewdata)
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.acknowledged) {
+                    alert('added review');
+                    form.reset();
+                }
+
+                console.log(data)
+            })
+            .catch(error => console.error(error));
+
+
+
+    }
     return (
         <div>
             <section>
@@ -21,6 +60,28 @@ const Details = () => {
                     </div>
 
                 </div>
+            </section>
+
+            <section className='text-center mx-auto my-4'>
+                <form onSubmit={handelReview}>
+                    <section className='card card-compact w-96 bg-base-100 shadow-xl my-8 mx-auto '>
+                        <h1 className='text-2xl'>Review</h1>
+
+                        <input type="text" placeholder='your email ' defaultValue={user?.email} readOnly />
+                        <h2>{review.name}</h2>
+                        <figure><img src={review.picture} className="rounded-lg" alt="Foods" /></figure>
+
+                        <p>{review.text}</p>
+                    </section>
+
+                    <input type="email" name="email" placeholder="your email" className="input input-bordered my-2 w-1/2 max-w-xs" defaultValue={user?.email} readOnly />
+                    <br />
+                    <input type="text" name="name" placeholder="your name" className="input input-bordered w-1/2 max-w-xs" />
+                    <br />
+                    <textarea className="textarea textarea-bordered my-2" placeholder="your review" name="message"></textarea>
+                    <br />
+                    <input type="submit" value="place your review" />
+                </form>
             </section>
         </div>
     );

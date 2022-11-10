@@ -1,3 +1,4 @@
+import userEvent from '@testing-library/user-event';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../../assets/logo.png'
@@ -42,7 +43,10 @@ const Header = () => {
             <div className="navbar-end">
                 <Link to='/login'><button className='btn'>Login</button></Link>
 
-                {/* <a className="btn">Get started</a> */}
+                
+            </div>
+            <div>
+               
             </div>
         </div>
     );
