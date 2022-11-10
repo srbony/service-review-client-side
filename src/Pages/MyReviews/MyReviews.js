@@ -4,9 +4,11 @@ import { useState } from 'react';
 import { useContext } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../../Contexts/AuthProvider/AuthProvider';
+import useTittle from '../../hooks/useTittle';
 import ReviewRow from '../ReviewRow/ReviewRow';
 
 const MyReviews = () => {
+    useTittle('MyReviews')
     const { user } = useContext(AuthContext);
     const [reviews, setReviews] = useState([])
     // const url = `http://localhost:5000/reviews?email=${user.email}`

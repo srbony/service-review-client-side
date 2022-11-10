@@ -1,6 +1,8 @@
 import React from 'react';
+import useTittle from '../../../hooks/useTittle';
 
 const Blog = () => {
+    useTittle('Blog')
     return (
         <div className='grid grid-cols-1 '>
 

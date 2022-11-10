@@ -2,7 +2,7 @@ import React from 'react';
 import { createContext } from 'react';
 import app from '../../firebase/firebase.config'
 // import { getAuth } from "/firebase/auth";
-import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
 import { useState } from 'react';
 import { useEffect } from 'react';
 
@@ -26,6 +26,9 @@ const AuthProvider = ({ children }) => {
         return signInWithEmailAndPassword(auth, email, password)
     }
 
+    const logOut=()=>{
+        return signOut(auth)
+    }
 
     const logInWithGoogle = (provider) => {
         return signInWithPopup(auth, provider)
@@ -47,7 +50,8 @@ const AuthProvider = ({ children }) => {
         loading,
         createUser,
         login,
-        logInWithGoogle
+        logInWithGoogle,
+        logOut
     }
 
     return (

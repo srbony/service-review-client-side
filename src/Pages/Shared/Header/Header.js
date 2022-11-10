@@ -6,7 +6,14 @@ import logo from '../../../assets/logo.png'
 import { AuthContext } from '../../../Contexts/AuthProvider/AuthProvider';
 
 const Header = () => {
-    const { user } = useContext(AuthContext);
+    const { user, logOut } = useContext(AuthContext);
+
+    const handleLogOut = () => {
+        logOut()
+            .then()
+            .catch(error => console.error(error))
+    }
+
 
     const menuItems = <>
         <li className='font-semibold font-2xl'> <Link to='/home'>Home</Link> </li>
@@ -16,6 +23,7 @@ const Header = () => {
 
                 <>
                     <li className='font-semibold font-2xl'> <Link to='/myreviews'>MyReviews</Link> </li>
+                    < li > <Link to='/logout'><button onClick={handleLogOut} className='btn mr-8'>Log out</button></Link></li>
                 </>
                 :
 
