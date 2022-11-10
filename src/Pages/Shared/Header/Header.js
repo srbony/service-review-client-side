@@ -1,14 +1,27 @@
 import userEvent from '@testing-library/user-event';
 import React from 'react';
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../../assets/logo.png'
+import { AuthContext } from '../../../Contexts/AuthProvider/AuthProvider';
 
 const Header = () => {
+    const { user } = useContext(AuthContext);
 
     const menuItems = <>
         <li className='font-semibold font-2xl'> <Link to='/home'>Home</Link> </li>
         <li className='font-semibold font-2xl'> <Link to='/blog'>Blog</Link> </li>
-        <li></li>
+        {
+            user?.email ?
+
+                <>
+                    <li className='font-semibold font-2xl'> <Link to='/myreviews'>MyReviews</Link> </li>
+                </>
+                :
+
+                < li > <Link to='/login'><button className='btn mr-8'>Login</button></Link></li>
+
+        }
 
 
     </>
@@ -40,13 +53,13 @@ const Header = () => {
                     {menuItems}
                 </ul>
             </div>
-            <div className="navbar-end">
+            {/* <div className="navbar-end">
                 <Link to='/login'><button className='btn'>Login</button></Link>
 
-                
-            </div>
+
+            </div> */}
             <div>
-               
+
             </div>
         </div>
     );

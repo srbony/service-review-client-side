@@ -2,8 +2,8 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
 
-const ReviewRow = ({ reviewsdata }) => {
-    const { _id, review, serviceName } = reviewsdata;
+const ReviewRow = ({ reviewsdata, handleDelete, handleUpdate }) => {
+    const { _id, review, status, serviceName } = reviewsdata;
     const [serviceReview, setServiceReview] = useState({});
 
 
@@ -14,19 +14,7 @@ const ReviewRow = ({ reviewsdata }) => {
     }, [review]);
 
 
-    const handleDelete = id => {
-        const procced = window.confirm('Are you sure want to delete');
-        if (procced) {
-            fetch(`http://localhost:5000/reviews/${id}`, {
-                method: 'DELETE'
-            })
-                .then(res => res.json())
-                .then(data => {
-                    console.log(data);
-                })
-        }
 
-    }
 
 
 
@@ -52,11 +40,14 @@ const ReviewRow = ({ reviewsdata }) => {
             <td>
                 {review.text}
                 <br />
-                <span className="badge badge-ghost badge-sm">Desktop Support Technician</span>
+
             </td>
 
             <th>
-                <button className="btn btn-ghost btn-xs">Update</button>
+                <button
+                    onClick={() => handleUpdate(_id)}
+
+                    className="btn btn-ghost btn-xs">{status ? status : 'Details'}</button>
             </th>
         </tr>
     );
