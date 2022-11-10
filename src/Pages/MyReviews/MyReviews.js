@@ -23,7 +23,7 @@ const MyReviews = () => {
         <div>
 
             <div className="overflow-x-auto w-full">
-                <table className="table w-full">
+                <table className="table w-1/2">
 
                     <thead>
                         <tr>
@@ -32,18 +32,18 @@ const MyReviews = () => {
                                     <input type="checkbox" className="checkbox" />
                                 </label>
                             </th>
-                            <th>Name</th>
-                            <th>Job</th>
-                            <th>Favorite Color</th>
+                            <th>Service Name</th>
+                            <th>Reviews</th>
+                           
                             <th></th>
                         </tr>
                     </thead>
                     <tbody>
                         {
                             reviews.map(reviewsdata => <ReviewRow
-                            key={reviewsdata._id}
-                            reviewsdata={reviewsdata}
-                            
+                                key={reviewsdata._id}
+                                reviewsdata={reviewsdata}
+
                             ></ReviewRow>)
                         }
 

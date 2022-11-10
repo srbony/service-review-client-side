@@ -16,6 +16,7 @@ const Details = () => {
 
         const reviewdata = {
             serviceId: _id,
+            text: review.text,
             review,
             serviceName: review.name,
             email,
